@@ -1,0 +1,16 @@
+.login {
+  height: 50rem;
+  width: 30rem;
+  align-items: center;
+  margin-left: 30rem;
+  margin-top: 5rem;
+  position: fixed;
+}
+
+.typo {
+  margin: 1rem !important;
+}
+
+.button {
+  margin-top: 1rem !important;
+}
