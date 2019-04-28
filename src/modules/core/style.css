@@ -1,0 +1,14 @@
+.cards {
+  width: 30rem;
+  margin-top: 5rem;
+}
+
+.typo {
+  margin: 1rem !important;
+}
+
+.eachCard {
+  height: 10rem;
+  width: 28rem;
+  margin-left: 30rem;
+}
