@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import Input from "./core-components/input";
+import Header from "./modules/header";
+import Login from "./modules/login/";
 import "./App.css";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Input />
+      <div>
+        <Header />
+        <Login />
       </div>
     );
   }

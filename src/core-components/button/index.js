@@ -4,13 +4,14 @@ import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { styles } from "./styles";
 
-const Buttons = ({ variant, className, isDisabled, value, color }) => {
+const Buttons = ({ variant, className, isDisabled, value, color, onClick }) => {
   return (
     <Button
       variant={variant}
       className={className}
       disabled={isDisabled}
       color={color}
+      onClick={onClick}
     >
       {value}
     </Button>
