@@ -14,3 +14,8 @@
 .button {
   margin-top: 1rem !important;
 }
+
+.register {
+  display: inline !important;
+  margin: 4rem !important;
+}

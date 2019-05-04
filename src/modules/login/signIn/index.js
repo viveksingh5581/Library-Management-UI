@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import CardContent from "@material-ui/core/CardContent";
 import Card from "@material-ui/core/Card";
 import Input from "../../../core-components/input";
@@ -12,7 +13,9 @@ class LoginPage extends React.Component {
     email: null,
     password: null,
     errorEmail: false,
-    errorPassword: false
+    errorPassword: false,
+    isRedirect: false,
+    isRegistration: false
   };
   onChangeEmail = event => {
     this.setState({ email: event.target.value });
@@ -21,7 +24,29 @@ class LoginPage extends React.Component {
     this.setState({ password: event.target.value });
   };
 
+  handleSubmit = () => {
+    let redirect = this._validateLogin();
+    this.setState({ isRedirect: !redirect });
+  };
+
+  handleRegistration = () => {
+    this.setState({ isRegistration: true });
+  };
+  _validateLogin = () => {
+    return (
+      this.state.email === null ||
+      this.state.password === null ||
+      this.state.email === "" ||
+      this.state.password === ""
+    );
+  };
   render() {
+    if (this.state.isRedirect) {
+      return <Redirect to="/core" />;
+    }
+    if (this.state.isRegistration) {
+      return <Redirect to="/register" />;
+    }
     return (
       <div className="login">
         <Card>
@@ -40,8 +65,17 @@ class LoginPage extends React.Component {
               variant="contained"
               color="primary"
               className="button"
-              onClick={this.props.handleSubmit}
+              onClick={this.handleSubmit}
             />
+            <div className="register">
+              <Button
+                value="Click here To Register"
+                variant="contained"
+                color="secondary"
+                className="button"
+                onClick={this.handleRegistration}
+              />
+            </div>
           </CardContent>
         </Card>
       </div>

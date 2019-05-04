@@ -5,10 +5,10 @@ import Typography from "@material-ui/core/Typography";
 import { CardContent } from "@material-ui/core";
 import Button from "../../core-components/button";
 import {
-  BUTTON_VALUE_MODULE1,
-  BUTTON_VALUE_MODULE2,
-  BUTTON_VALUE_MODULE3,
-  BUTTON_VALUE_MODULE4
+  BUTTON_VALUE_MODULE_ADMIN,
+  BUTTON_VALUE_MODULE_USER,
+  BUTTON_VALUE_MODULE_Search,
+  BUTTON_VALUE_MODULE_VISITOR
 } from "./constants";
 import "./style.css";
 
@@ -47,16 +47,16 @@ class Core extends React.Component {
   handleClick = e => {
     let redirect;
     switch (e.target.textContent) {
-      case BUTTON_VALUE_MODULE1:
+      case BUTTON_VALUE_MODULE_ADMIN:
         redirect = "module1";
         break;
-      case BUTTON_VALUE_MODULE2:
+      case BUTTON_VALUE_MODULE_USER:
         redirect = "module2";
         break;
-      case BUTTON_VALUE_MODULE3:
+      case BUTTON_VALUE_MODULE_Search:
         redirect = "module3";
         break;
-      case BUTTON_VALUE_MODULE4:
+      case BUTTON_VALUE_MODULE_VISITOR:
         redirect = "module4";
         break;
       default:
@@ -71,10 +71,10 @@ class Core extends React.Component {
     }
     return (
       <div className="cards">
-        {this.renderCard("Module 1", BUTTON_VALUE_MODULE1)}
-        {this.renderCard("Module 2", BUTTON_VALUE_MODULE2)}
-        {this.renderCard("Module 3", BUTTON_VALUE_MODULE3)}
-        {this.renderCard("Module 4", BUTTON_VALUE_MODULE4)}
+        {this.renderCard("Module 1", BUTTON_VALUE_MODULE_ADMIN)}
+        {this.renderCard("Module 2", BUTTON_VALUE_MODULE_USER)}
+        {this.renderCard("Module 3", BUTTON_VALUE_MODULE_Search)}
+        {this.renderCard("Module 4", BUTTON_VALUE_MODULE_VISITOR)}
       </div>
     );
   }

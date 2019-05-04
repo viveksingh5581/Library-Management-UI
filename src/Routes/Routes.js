@@ -3,10 +3,11 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { ProtectedRoute } from "./ProtectedRoute";
 import Login from "../modules/login/";
 import Core from "../modules/core";
-import Module1 from "../modules/core/module1";
-import Module2 from "../modules/core/module2";
-import Module3 from "../modules/core/module3";
-import Module4 from "../modules/core/module4";
+import Admin from "../modules/core/Admin";
+import Search from "../modules/core/Search";
+import User from "../modules/core/User";
+import Visitor from "../modules/core/Visitor";
+import Registration from "../modules/Registration";
 
 class Routes extends Component {
   render() {
@@ -15,10 +16,11 @@ class Routes extends Component {
         <Switch>
           <Route path="/" exact strict component={Login} />
           <ProtectedRoute path="/core" exact strict component={Core} />
-          <Route path="/module1" exact strict component={Module1} />
-          <Route path="/module2" exact strict component={Module2} />
-          <Route path="/module3" exact strict component={Module3} />
-          <Route path="/module4" exact strict component={Module4} />
+          <Route path="/register" exact strict component={Registration} />
+          <Route path="/module1" exact strict component={Admin} />
+          <Route path="/module2" exact strict component={Search} />
+          <Route path="/module3" exact strict component={User} />
+          <Route path="/module4" exact strict component={Visitor} />
         </Switch>
       </BrowserRouter>
     );
