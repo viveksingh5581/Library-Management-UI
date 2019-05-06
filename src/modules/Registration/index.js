@@ -1,9 +1,13 @@
 import React, { Component } from "react";
-import "./style.css";
+import RegistrationForm from "./Form";
 
 class Registration extends Component {
   render() {
-    return <div className="cards">From Registration Page</div>;
+    return (
+      <div>
+        <RegistrationForm />
+      </div>
+    );
   }
 }
 export default Registration;

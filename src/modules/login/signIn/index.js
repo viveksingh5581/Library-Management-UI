@@ -6,6 +6,7 @@ import Input from "../../../core-components/input";
 import Typography from "@material-ui/core/Typography";
 import Button from "../../../core-components/button";
 import * as LoginConst from "./constants";
+import RestClient from "../../../utils/RestClient";
 import "./style.css";
 
 class LoginPage extends React.Component {
@@ -25,7 +26,17 @@ class LoginPage extends React.Component {
   };
 
   handleSubmit = () => {
+    const errorCB = error => {
+      console.log(error.json);
+      this.setState({ isRedirect: redirect });
+    };
+    const successCB = response => {
+      console.log(response.json);
+    };
+    let url = "http://demo7552460.mockable.io/ranges/sprm/login/";
+    new RestClient(url).get(successCB, errorCB);
     let redirect = this._validateLogin();
+
     this.setState({ isRedirect: !redirect });
   };
 
@@ -40,6 +51,17 @@ class LoginPage extends React.Component {
       this.state.password === ""
     );
   };
+
+  renderLogin = (type, placeholder, onChange, header) => {
+    return (
+      <div>
+        <Typography>{header}</Typography>
+        <Input type={type} onChange={onChange} placeholder={placeholder} />
+        <br />
+      </div>
+    );
+  };
+
   render() {
     if (this.state.isRedirect) {
       return <Redirect to="/core" />;
@@ -54,11 +76,18 @@ class LoginPage extends React.Component {
             {LoginConst.TITLE}
           </Typography>
           <CardContent>
-            <Typography>{LoginConst.USER_LOGIN_TEXT}</Typography>
-            <Input type="text" onChange={this.onChangeEmail} />
-            <br />
-            <Typography>{LoginConst.PASSWORD}</Typography>
-            <Input type="password" onChange={this.onChangePassword} />
+            {this.renderLogin(
+              "text",
+              LoginConst.EMAIL_PLACEHOLDER,
+              this.onChangeEmail,
+              LoginConst.USER_LOGIN_TEXT
+            )}
+            {this.renderLogin(
+              "password",
+              LoginConst.PASSWORD_PLACEHOLDER,
+              this.onChangePassword,
+              LoginConst.PASSWORD
+            )}
             <br />
             <Button
               value="Submit"

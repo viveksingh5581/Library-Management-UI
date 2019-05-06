@@ -1,6 +1,6 @@
 export const TITLE = "Sign in to your account";
 export const USER_LOGIN_TEXT = "User Id / Email address";
-export const EMAIL_PLACEHOLDER = "e.g. userId or name@example.com";
+export const EMAIL_PLACEHOLDER = "e.g. name@example.com";
 export const PASSWORD_PLACEHOLDER = "Please enter your password";
 export const PASSWORD = "Password";
 export const LOGIN_LOADER_TEXT = "Please wait while we log you in...";

@@ -2,13 +2,14 @@ class RestClient {
   constructor(url) {
     this.url = url;
   }
+
   checkStatus = response => {
     if (response.status >= 200 && response.status < 300) {
-      return response;
+      return true;
     } else {
       var error = new Error(response.status);
       error.response = response;
-      throw error;
+      throw error.message;
     }
   };
 
@@ -16,37 +17,34 @@ class RestClient {
     return response.json();
   };
 
-  get(successCB, errorCB) {
-    this._handleResponse(false, null, successCB, errorCB);
-  }
+  get = (successCB, errorCB) => {
+    this._handleResponse(false, successCB, errorCB, null);
+  };
+  post = (successCB, errorCB, requestBody) => {
+    this._handleRequest(true, successCB, errorCB, requestBody);
+  };
 
-  post(successCB, errorCB, requestBody) {
-    this._handleResponse(true, requestBody, successCB, errorCB);
-  }
-
-  _handleResponse = (isPost, requestBody, successCB, errorCB) => {
+  _handleRequest = async (isPost, successCB, errorCB, requestBody) => {
     let requestHeaders = {
       "Content-Type": "application/json"
     };
     if (isPost && Object.keys(requestBody).length === 0) {
       requestHeaders = {};
     }
-    let response = isPost
-      ? fetch(this.url, {
+    const response = isPost
+      ? await fetch(this.url, {
           method: "POST",
           headers: requestHeaders,
           body: JSON.stringify(requestBody)
         })
       : fetch(this.url);
-    response
-      .then(this.checkStatus)
-      .then(this.parseJSON)
-      .then(response => {
-        successCB(response);
-      })
-      .catch(error => {
-        errorCB(error.message);
-      });
+    const status = await this.checkStatus(response);
+    const json = await this.parseJSON;
+    if (status) {
+      await successCB(json);
+    } else {
+      await errorCB(status);
+    }
   };
 }
 export default RestClient;

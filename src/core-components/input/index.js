@@ -25,6 +25,7 @@ const Input = ({
       onChange={onChange}
       margin={margin}
       error={error}
+      fullWidth 
     />
   );
 };
