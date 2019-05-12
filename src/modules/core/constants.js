@@ -4,3 +4,4 @@ export const BUTTON_VALUE_MODULE_Search = "Search Module";
 export const BUTTON_VALUE_MODULE_VISITOR = "Visitors Module";
 
 export const MODULE_TEXT = "Click Bellow To enter";
+export const BACK_TO_MAIN = "Back to Main";

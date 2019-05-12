@@ -77,6 +77,7 @@ class Core extends React.Component {
     }
     return (
       <div className="cards">
+        <div />
         {this.renderCard(MODULE_TEXT, BUTTON_VALUE_MODULE_ADMIN)}
         {this.renderCard(MODULE_TEXT, BUTTON_VALUE_MODULE_USER)}
         {this.renderCard(MODULE_TEXT, BUTTON_VALUE_MODULE_Search)}

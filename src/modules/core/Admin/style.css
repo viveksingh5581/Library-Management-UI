@@ -10,3 +10,8 @@
 .typo {
   margin: 1rem !important;
 }
+
+.back {
+  margin-top: 5rem;
+  position: fixed;
+}
