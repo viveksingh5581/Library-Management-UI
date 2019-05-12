@@ -7,5 +7,7 @@ export const RE_ENTER_PASSWORD = "Re-Enter Password";
 
 export const FIRST_NAME = "First Name";
 export const FIRST_NAME_PLACEHOLDER = "First";
+export const USER_NAME = "User Name";
+export const USER_NAME_PLACEHOLDER = "alex123";
 export const LAST_NAME = "Last Name";
 export const LAST_NAME_PLACEHOLDER = "Last";

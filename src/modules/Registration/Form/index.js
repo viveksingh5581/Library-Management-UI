@@ -44,6 +44,12 @@ class RegistrationForm extends React.Component {
               RegistrationConstant.EMAIL_PLACEHOLDER
             )}
             {this.renderFields(
+              RegistrationConstant.USER_NAME,
+              "text",
+              this.onChangeUserName,
+              RegistrationConstant.USER_NAME_PLACEHOLDER
+            )}
+            {this.renderFields(
               RegistrationConstant.FIRST_NAME,
               "text",
               this.onChangeFirstName,

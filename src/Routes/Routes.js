@@ -17,10 +17,10 @@ class Routes extends Component {
           <Route path="/" exact strict component={Login} />
           <ProtectedRoute path="/core" exact strict component={Core} />
           <Route path="/register" exact strict component={Registration} />
-          <Route path="/module1" exact strict component={Admin} />
-          <Route path="/module2" exact strict component={Search} />
-          <Route path="/module3" exact strict component={User} />
-          <Route path="/module4" exact strict component={Visitor} />
+          <Route path="/admin" exact strict component={Admin} />
+          <Route path="/search" exact strict component={Search} />
+          <Route path="/user" exact strict component={User} />
+          <Route path="/visitor" exact strict component={Visitor} />
         </Switch>
       </BrowserRouter>
     );

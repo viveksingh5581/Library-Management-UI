@@ -8,7 +8,8 @@ import {
   BUTTON_VALUE_MODULE_ADMIN,
   BUTTON_VALUE_MODULE_USER,
   BUTTON_VALUE_MODULE_Search,
-  BUTTON_VALUE_MODULE_VISITOR
+  BUTTON_VALUE_MODULE_VISITOR,
+  MODULE_TEXT
 } from "./constants";
 import "./style.css";
 
@@ -35,7 +36,12 @@ class Core extends React.Component {
     return (
       <Card className="eachCard">
         <CardContent>
-          <Typography className="typo" color="textSecondary">
+          <Typography
+            className="typo"
+            color="textPrimary"
+            variant="button"
+            align="center"
+          >
             {moduleName}
           </Typography>
           {this.renderButton(moduleButtonValue)}
@@ -48,16 +54,16 @@ class Core extends React.Component {
     let redirect;
     switch (e.target.textContent) {
       case BUTTON_VALUE_MODULE_ADMIN:
-        redirect = "module1";
+        redirect = "admin";
         break;
       case BUTTON_VALUE_MODULE_USER:
-        redirect = "module2";
+        redirect = "user";
         break;
       case BUTTON_VALUE_MODULE_Search:
-        redirect = "module3";
+        redirect = "search";
         break;
       case BUTTON_VALUE_MODULE_VISITOR:
-        redirect = "module4";
+        redirect = "visitor";
         break;
       default:
         break;
@@ -71,10 +77,10 @@ class Core extends React.Component {
     }
     return (
       <div className="cards">
-        {this.renderCard("Module 1", BUTTON_VALUE_MODULE_ADMIN)}
-        {this.renderCard("Module 2", BUTTON_VALUE_MODULE_USER)}
-        {this.renderCard("Module 3", BUTTON_VALUE_MODULE_Search)}
-        {this.renderCard("Module 4", BUTTON_VALUE_MODULE_VISITOR)}
+        {this.renderCard(MODULE_TEXT, BUTTON_VALUE_MODULE_ADMIN)}
+        {this.renderCard(MODULE_TEXT, BUTTON_VALUE_MODULE_USER)}
+        {this.renderCard(MODULE_TEXT, BUTTON_VALUE_MODULE_Search)}
+        {this.renderCard(MODULE_TEXT, BUTTON_VALUE_MODULE_VISITOR)}
       </div>
     );
   }
