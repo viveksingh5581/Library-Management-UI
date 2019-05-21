@@ -77,7 +77,7 @@ class RestClient {
         successCB(response);
       })
       .catch(error => {
-        errorCB(error.message);
+        errorCB(error);
       });
   };
 }

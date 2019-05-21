@@ -19,15 +19,18 @@ class RegistrationForm extends React.Component {
     userName: null,
     firstName: null,
     lastName: null,
-    isError: false
+    isError: false,
+    isSuccess: false
   };
 
   handleSubmit = () => {
     const errorCB = error => {
       console.log(error);
+      this.setState({ isError: true });
     };
     const successCB = response => {
       console.log(response);
+      this.setState({ isSuccess: true, isError: false });
     };
     let requestBody = this._createRequestBody();
     let url = createUser;
@@ -137,7 +140,19 @@ class RegistrationForm extends React.Component {
           <Card>
             <CardContent>
               <Typography variant="error" color="error">
-                Email Id or password is Wrong
+                User Is Already Registered
+              </Typography>
+            </CardContent>
+          </Card>
+        ) : (
+          ""
+        )}
+
+        {this.state.isSuccess ? (
+          <Card>
+            <CardContent>
+              <Typography variant="h6" color="inherit">
+                Registraion Successfull !!
               </Typography>
             </CardContent>
           </Card>
