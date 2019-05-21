@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import CardContent from "@material-ui/core/CardContent";
 import Card from "@material-ui/core/Card";
-import Input from "../../../core-components/input";
 import Typography from "@material-ui/core/Typography";
+import Input from "../../../core-components/input";
 import { Redirect } from "react-router-dom";
 import Button from "../../../core-components/button";
 import { ADMIN_PAGE_HEADER } from "./constants";
@@ -15,6 +15,16 @@ class AdminPage extends Component {
   };
   handleClick = () => {
     this.setState({ isRedirect: true });
+  };
+
+  renderInput = (type, placeholder, onChange, header) => {
+    return (
+      <div>
+        <Typography>{header}</Typography>
+        <Input type={type} onChange={onChange} placeholder={placeholder} />
+        <br />
+      </div>
+    );
   };
   render() {
     if (this.state.isRedirect) {
@@ -36,7 +46,36 @@ class AdminPage extends Component {
             <Typography className="typo" variant="headline">
               {ADMIN_PAGE_HEADER}
             </Typography>
-            <CardContent>Admin</CardContent>
+            <CardContent>
+              {this.renderInput(
+                "text",
+                "Add Book Here...",
+                this.onChangeBookAdd,
+                "Add Book"
+              )}
+              <Button
+                value="Add"
+                variant="contained"
+                color="secondary"
+                className="button"
+                onClick={this.handleBookClick}
+              />
+            </CardContent>
+            <CardContent>
+              {this.renderInput(
+                "text",
+                "Add Video Here...",
+                this.onChangeVideoAdd,
+                "Add Video"
+              )}
+              <Button
+                value="Add"
+                variant="contained"
+                color="secondary"
+                className="button"
+                onClick={this.handleVideoClick}
+              />
+            </CardContent>
           </Card>
         </div>
       </>

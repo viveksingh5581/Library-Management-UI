@@ -6,17 +6,68 @@ import Input from "../../../core-components/input";
 import Typography from "@material-ui/core/Typography";
 import Button from "../../../core-components/button";
 import * as RegistrationConstant from "./constants";
+import { createUser } from "../../../utils/apiUrls";
+import RestClient from "../../../utils/RestClient";
 import "./style.css";
 
 class RegistrationForm extends React.Component {
   state = {
-    isRegister: false
+    isRegister: false,
+    email: null,
+    password: null,
+    re_password: null,
+    userName: null,
+    firstName: null,
+    lastName: null,
+    isError: false
   };
 
   handleSubmit = () => {
-    this.setState({ isRegister: true });
+    const errorCB = error => {
+      console.log(error);
+    };
+    const successCB = response => {
+      console.log(response);
+    };
+    let requestBody = this._createRequestBody();
+    let url = createUser;
+    new RestClient(url).post(successCB, errorCB, requestBody);
+  };
+  _createRequestBody = () => {
+    return {
+      emailAddress: this.state.email,
+      originalPassword: this.state.password,
+      userFirstName: this.state.firstName,
+      userLastName: this.state.lastName,
+      userName: this.state.userName,
+      valid: true
+    };
   };
 
+  onChangeEmail = event => {
+    this.setState({ email: event.target.value });
+  };
+  onChangeUserName = event => {
+    this.setState({ userName: event.target.value });
+  };
+  onChangeFirstName = event => {
+    this.setState({ firstName: event.target.value });
+  };
+  onChangeLastName = event => {
+    this.setState({ lastName: event.target.value });
+  };
+  onChangePassword = event => {
+    this.setState({ password: event.target.value });
+  };
+  onChangePassword2 = event => {
+    this.setState({ re_password: event.target.value });
+  };
+
+  _checkPassword() {
+    if (this.state.password === this.state.re_password) {
+      this.setState({ isError: true });
+    }
+  }
   renderFields = (fieldName, type, onChange, placeHolder) => {
     return (
       <div>
@@ -70,7 +121,7 @@ class RegistrationForm extends React.Component {
             {this.renderFields(
               RegistrationConstant.RE_ENTER_PASSWORD,
               "password",
-              this.onChangePassword,
+              this.onChangePassword2,
               RegistrationConstant.PASSWORD_PLACEHOLDER
             )}
             <Button
@@ -82,6 +133,17 @@ class RegistrationForm extends React.Component {
             />
           </CardContent>
         </Card>
+        {this.state.isError ? (
+          <Card>
+            <CardContent>
+              <Typography variant="error" color="error">
+                Email Id or password is Wrong
+              </Typography>
+            </CardContent>
+          </Card>
+        ) : (
+          ""
+        )}
       </div>
     );
   }

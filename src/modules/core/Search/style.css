@@ -10,3 +10,9 @@
 .typo {
   margin: 1rem !important;
 }
+
+table,
+th,
+td {
+  border: 1px solid black;
+}

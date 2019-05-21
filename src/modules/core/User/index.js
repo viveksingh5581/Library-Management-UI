@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import CardContent from "@material-ui/core/CardContent";
 import Card from "@material-ui/core/Card";
-import Input from "../../../core-components/input";
 import Typography from "@material-ui/core/Typography";
 import { Redirect } from "react-router-dom";
 import Button from "../../../core-components/button";

@@ -4,6 +4,7 @@ import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import { CardContent } from "@material-ui/core";
 import Button from "../../core-components/button";
+import main from "../../assets/main.png";
 import {
   BUTTON_VALUE_MODULE_ADMIN,
   BUTTON_VALUE_MODULE_USER,
@@ -76,13 +77,30 @@ class Core extends React.Component {
       return <Redirect to={redirect} />;
     }
     return (
-      <div className="cards">
+      <>
+        <div className="main">
+          <Card className="mainCard">
+            <CardContent>
+              <Typography
+                className="typo"
+                color="textPrimary"
+                variant="headline"
+                align="center"
+              >
+                Welcome to Liabray Managemant System
+              </Typography>
+            </CardContent>
+          </Card>
+          <img src={main} alt="main" className="image" />
+        </div>
         <div />
-        {this.renderCard(MODULE_TEXT, BUTTON_VALUE_MODULE_ADMIN)}
-        {this.renderCard(MODULE_TEXT, BUTTON_VALUE_MODULE_USER)}
-        {this.renderCard(MODULE_TEXT, BUTTON_VALUE_MODULE_Search)}
-        {this.renderCard(MODULE_TEXT, BUTTON_VALUE_MODULE_VISITOR)}
-      </div>
+        <div className="cards">
+          {this.renderCard(MODULE_TEXT, BUTTON_VALUE_MODULE_ADMIN)}
+          {this.renderCard(MODULE_TEXT, BUTTON_VALUE_MODULE_USER)}
+          {this.renderCard(MODULE_TEXT, BUTTON_VALUE_MODULE_Search)}
+          {this.renderCard(MODULE_TEXT, BUTTON_VALUE_MODULE_VISITOR)}
+        </div>
+      </>
     );
   }
 }

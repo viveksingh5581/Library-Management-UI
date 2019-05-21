@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "../../../core-components/button";
 import * as LoginConst from "./constants";
 import RestClient from "../../../utils/RestClient";
+import { loginUrlBuilder } from "../../../utils/urlBuilder";
 import "./style.css";
 
 class LoginPage extends React.Component {
@@ -16,7 +17,8 @@ class LoginPage extends React.Component {
     errorEmail: false,
     errorPassword: false,
     isRedirect: false,
-    isRegistration: false
+    isRegistration: false,
+    isError: false
   };
   onChangeEmail = event => {
     this.setState({ email: event.target.value });
@@ -27,17 +29,17 @@ class LoginPage extends React.Component {
 
   handleSubmit = () => {
     const errorCB = error => {
-      console.log(error.json);
-      this.setState({ isRedirect: redirect });
+      this.setState({ isRedirect: this.state.isRedirect, isError: true });
     };
     const successCB = response => {
-      console.log(response.json);
+      this.setState({ isRedirect: response.valid });
     };
-    let url = "http://demo7552460.mockable.io/ranges/sprm/login/";
-    new RestClient(url).get(successCB, errorCB);
     let redirect = this._validateLogin();
-
-    this.setState({ isRedirect: !redirect });
+    if (redirect) {
+      this.setState({ isRedirect: !redirect });
+    }
+    let url = loginUrlBuilder(this.state.email, this.state.password);
+    new RestClient(url).get(successCB, errorCB);
   };
 
   handleRegistration = () => {
@@ -107,6 +109,17 @@ class LoginPage extends React.Component {
             </div>
           </CardContent>
         </Card>
+        {this.state.isError ? (
+          <Card>
+            <CardContent>
+              <Typography variant="error" color="error">
+                Email Id or password is Wrong
+              </Typography>
+            </CardContent>
+          </Card>
+        ) : (
+          ""
+        )}
       </div>
     );
   }

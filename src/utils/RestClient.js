@@ -16,7 +16,7 @@ class RestClient {
    */
   checkStatus = response => {
     if (response.status >= 200 && response.status < 300) {
-      return true;
+      return response;
     } else {
       var error = new Error(response.status);
       error.response = response;
@@ -56,27 +56,29 @@ class RestClient {
     this._handleRequest(true, successCB, errorCB, requestBody);
   };
 
-  _handleRequest = async (isPost, successCB, errorCB, requestBody) => {
+  _handleRequest = (isPost, successCB, errorCB, requestBody) => {
     let requestHeaders = {
       "Content-Type": "application/json"
     };
     if (isPost && Object.keys(requestBody).length === 0) {
       requestHeaders = {};
     }
-    const response = isPost
-      ? await fetch(this.url, {
+    let response = isPost
+      ? fetch(this.url, {
           method: "POST",
           headers: requestHeaders,
           body: JSON.stringify(requestBody)
         })
       : fetch(this.url);
-    const status = await this.checkStatus(response);
-    const json = await this.parseJSON;
-    if (status) {
-      await successCB(json);
-    } else {
-      await errorCB(status);
-    }
+    response
+      .then(this.checkStatus)
+      .then(this.parseJSON)
+      .then(response => {
+        successCB(response);
+      })
+      .catch(error => {
+        errorCB(error.message);
+      });
   };
 }
 export default RestClient;

@@ -1,4 +1,12 @@
 .cards {
+  float: right;
+  width: 30rem;
+  margin-top: 5rem;
+}
+
+.main {
+  float: left;
+  margin-left: 10rem;
   width: 30rem;
   margin-top: 5rem;
 }
@@ -11,4 +19,12 @@
   height: 10rem;
   width: 28rem;
   margin-left: 30rem;
+}
+
+.MuiPaper-root-13.MuiPaper-elevation1-16.MuiPaper-rounded-14.MuiCard-root-80.mainCard {
+  box-shadow: none;
+}
+
+.image {
+  height: 20rem;
 }
