@@ -30,7 +30,7 @@ class RegistrationForm extends React.Component {
     };
     const successCB = response => {
       console.log(response);
-      this.setState({ isSuccess: true, isError: false });
+      this.setState({ isSuccess: true, isError: false, isRegister: true });
     };
     let requestBody = this._createRequestBody();
     let url = createUser;
@@ -80,86 +80,101 @@ class RegistrationForm extends React.Component {
       </div>
     );
   };
+
+  handleBackClick = () => {
+    this.setState({ isRegister: true });
+  };
   render() {
     if (this.state.isRegister) {
       return <Redirect to="/" />;
     }
     return (
-      <div className="registerPage">
-        <Card>
-          <Typography className="typo" variant="headline">
-            {RegistrationConstant.TITLE}
-          </Typography>
-          <CardContent>
-            {this.renderFields(
-              RegistrationConstant.EMAIL,
-              "text",
-              this.onChangeEmail,
-              RegistrationConstant.EMAIL_PLACEHOLDER
-            )}
-            {this.renderFields(
-              RegistrationConstant.USER_NAME,
-              "text",
-              this.onChangeUserName,
-              RegistrationConstant.USER_NAME_PLACEHOLDER
-            )}
-            {this.renderFields(
-              RegistrationConstant.FIRST_NAME,
-              "text",
-              this.onChangeFirstName,
-              RegistrationConstant.FIRST_NAME_PLACEHOLDER
-            )}
-            {this.renderFields(
-              RegistrationConstant.LAST_NAME,
-              "text",
-              this.onChangeLastName,
-              RegistrationConstant.LAST_NAME_PLACEHOLDER
-            )}
-            {this.renderFields(
-              RegistrationConstant.PASSWORD,
-              "password",
-              this.onChangePassword,
-              RegistrationConstant.PASSWORD_PLACEHOLDER
-            )}
-            {this.renderFields(
-              RegistrationConstant.RE_ENTER_PASSWORD,
-              "password",
-              this.onChangePassword2,
-              RegistrationConstant.PASSWORD_PLACEHOLDER
-            )}
-            <Button
-              value="Register"
-              variant="contained"
-              color="primary"
-              className="button"
-              onClick={this.handleSubmit}
-            />
-          </CardContent>
-        </Card>
-        {this.state.isError ? (
+      <>
+        <div className="back">
+          <Button
+            value="Back to Login"
+            variant="contained"
+            color="primary"
+            className="button"
+            onClick={this.handleBackClick}
+          />
+        </div>
+        <div className="registerPage">
           <Card>
+            <Typography className="typo" variant="headline">
+              {RegistrationConstant.TITLE}
+            </Typography>
             <CardContent>
-              <Typography variant="error" color="error">
-                User Is Already Registered
-              </Typography>
+              {this.renderFields(
+                RegistrationConstant.EMAIL,
+                "text",
+                this.onChangeEmail,
+                RegistrationConstant.EMAIL_PLACEHOLDER
+              )}
+              {this.renderFields(
+                RegistrationConstant.USER_NAME,
+                "text",
+                this.onChangeUserName,
+                RegistrationConstant.USER_NAME_PLACEHOLDER
+              )}
+              {this.renderFields(
+                RegistrationConstant.FIRST_NAME,
+                "text",
+                this.onChangeFirstName,
+                RegistrationConstant.FIRST_NAME_PLACEHOLDER
+              )}
+              {this.renderFields(
+                RegistrationConstant.LAST_NAME,
+                "text",
+                this.onChangeLastName,
+                RegistrationConstant.LAST_NAME_PLACEHOLDER
+              )}
+              {this.renderFields(
+                RegistrationConstant.PASSWORD,
+                "password",
+                this.onChangePassword,
+                RegistrationConstant.PASSWORD_PLACEHOLDER
+              )}
+              {this.renderFields(
+                RegistrationConstant.RE_ENTER_PASSWORD,
+                "password",
+                this.onChangePassword2,
+                RegistrationConstant.PASSWORD_PLACEHOLDER
+              )}
+              <Button
+                value="Register"
+                variant="contained"
+                color="primary"
+                className="button"
+                onClick={this.handleSubmit}
+              />
             </CardContent>
           </Card>
-        ) : (
-          ""
-        )}
+          {this.state.isError ? (
+            <Card>
+              <CardContent>
+                <Typography variant="error" color="error">
+                  User Is Already Registered
+                </Typography>
+              </CardContent>
+            </Card>
+          ) : (
+            ""
+          )}
 
-        {this.state.isSuccess ? (
-          <Card>
-            <CardContent>
-              <Typography variant="h6" color="inherit">
-                Registraion Successfull !!
-              </Typography>
-            </CardContent>
-          </Card>
-        ) : (
-          ""
-        )}
-      </div>
+          {this.state.isSuccess ? (
+            <Card>
+              <CardContent>
+                <Typography variant="h6" color="inherit">
+                  Registraion Successfull !!
+                </Typography>
+              </CardContent>
+            </Card>
+          ) : (
+            ""
+          )}
+        </div>
+      </>
     );
   }
 }
