@@ -23,6 +23,9 @@ class BookForm extends React.Component {
     isSuccess: false
   };
 
+  onChange = (event, value) => {
+    this.setState({ value: event.target.value });
+  };
   onChangeAuthor = event => {
     this.setState({ authorName: event.target.value });
   };
