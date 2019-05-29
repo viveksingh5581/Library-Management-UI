@@ -1,12 +1,43 @@
-.cards {
+.userCards {
   height: 50rem;
-  width: 30rem;
+  width: 50rem;
   align-items: center;
-  margin-left: 30rem !important;
+  margin-left: 25rem !important;
   margin-top: 5rem;
   position: fixed;
 }
 
+.MuiPaper-root-13.MuiPaper-elevation1-16.MuiPaper-rounded-14.MuiCard-root-111 {
+  height: 40rem;
+}
+.card1 {
+  height: 20rem;
+  align-items: center;
+  position: fixed;
+}
+
+.MuiPaper-root-13.MuiPaper-elevation1-16.MuiPaper-rounded-14.MuiCard-root-111.card1_card {
+  height: 20rem;
+  float: left;
+  width: 25rem;
+}
+
+.card2 {
+  height: 20rem;
+  align-items: center;
+  position: fixed;
+}
+
+.MuiPaper-root-13.MuiPaper-elevation1-16.MuiPaper-rounded-14.MuiCard-root-111.card2_card {
+  height: 20rem;
+  float: right;
+  width: 25rem;
+}
+
 .typo {
   margin: 1rem !important;
+}
+
+.updateFields {
+  width: 30rem;
 }

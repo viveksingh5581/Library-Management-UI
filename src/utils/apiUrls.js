@@ -9,3 +9,6 @@ export const createBook = baseUrl + "/books/createBook";
 
 export const videoUrl = "/videos/$videoTitle";
 export const createVideo = baseUrl + "/videos/createVideo";
+
+export const updatePassword = baseUrl + "/users/update/password";
+export const updateNames = baseUrl + "/users/update/names";
